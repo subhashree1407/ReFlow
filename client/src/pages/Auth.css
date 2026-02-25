@@ -1,0 +1,284 @@
+:root {
+    --auth-primary: #0ea5e9;
+    --auth-secondary: #0284c7;
+    --auth-black: #0f172a;
+    --auth-white: #ffffff;
+    --auth-gray: #f4f4f5;
+    --auth-gray-2: #94a3b8;
+}
+
+.auth-container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: var(--auth-white);
+}
+
+.auth-container * {
+    box-sizing: border-box;
+}
+
+.auth-container .row {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+}
+
+.auth-container .col {
+    width: 50%;
+}
+
+.auth-container .align-items-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.auth-container .form-wrapper {
+    width: 100%;
+    max-width: 28rem;
+    padding: 0 20px;
+}
+
+.auth-container .form {
+    padding: 2.5rem 2.5rem;
+    background-color: var(--auth-white);
+    border-radius: 1.5rem;
+    width: 100%;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.1);
+    transform: scale(0);
+    transition: .5s ease-in-out;
+    transition-delay: 0.6s;
+}
+
+.auth-container .input-group {
+    position: relative;
+    width: 100%;
+    margin: 1.2rem 0;
+}
+
+.auth-container .input-group svg {
+    position: absolute;
+    top: 50%;
+    left: 1.2rem;
+    transform: translateY(-50%);
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--auth-gray-2);
+}
+
+.auth-container .input-group input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3.2rem;
+    font-size: 0.95rem;
+    background-color: var(--auth-gray);
+    border-radius: .75rem;
+    border: 0.125rem solid transparent;
+    outline: none;
+    color: var(--auth-black);
+    transition: all 0.2s;
+}
+
+.auth-container .input-group input:focus {
+    border: 0.125rem solid var(--auth-primary);
+    background-color: var(--auth-white);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.1);
+}
+
+.auth-container .form button[type="submit"] {
+    cursor: pointer;
+    width: 100%;
+    padding: .85rem 0;
+    border-radius: .75rem;
+    border: none;
+    background-color: var(--auth-primary);
+    color: var(--auth-white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    outline: none;
+    transition: all 0.2s;
+    margin-top: 1rem;
+}
+
+.auth-container .form button[type="submit"]:hover {
+    background-color: var(--auth-secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+.auth-container .form button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+.auth-container .form p {
+    margin: 1.5rem 0 0 0;
+    font-size: .9rem;
+    color: var(--auth-black);
+}
+
+.auth-container .flex-col {
+    flex-direction: column;
+}
+
+.auth-container .pointer {
+    cursor: pointer;
+}
+
+/* Animations and Toggles */
+.auth-container.sign-in .form.sign-in,
+.auth-container.sign-up .form.sign-up {
+    transform: scale(1);
+    z-index: 10;
+}
+
+.auth-container.sign-in .form.sign-up,
+.auth-container.sign-up .form.sign-in {
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+    transition-delay: 0s;
+}
+
+.auth-container .content-row {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 6;
+    width: 100%;
+}
+
+.auth-container .text {
+    margin: 4rem;
+    color: var(--auth-white);
+    max-width: 400px;
+}
+
+.auth-container .text h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 1rem 0;
+    transition: 1s ease-in-out;
+    line-height: 1.1;
+}
+
+.auth-container .text p {
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: 1s ease-in-out;
+    transition-delay: .2s;
+    opacity: 0.9;
+}
+
+.auth-container .text.sign-in h2,
+.auth-container .text.sign-in p {
+    transform: translateX(-250%);
+}
+
+.auth-container .text.sign-up h2,
+.auth-container .text.sign-up p {
+    transform: translateX(250%);
+}
+
+.auth-container.sign-in .text.sign-in h2,
+.auth-container.sign-in .text.sign-in p,
+.auth-container.sign-up .text.sign-up h2,
+.auth-container.sign-up .text.sign-up p {
+    transform: translateX(0);
+}
+
+/* BACKGROUND */
+.auth-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 300vw;
+    transform: translate(35%, 0);
+    background-image: linear-gradient(-45deg, var(--auth-primary) 0%, var(--auth-secondary) 100%);
+    transition: 1s ease-in-out;
+    z-index: 5;
+    box-shadow: 0 10px 40px rgba(14, 165, 233, 0.3);
+    border-bottom-right-radius: max(50vw, 50vh);
+    border-top-left-radius: max(50vw, 50vh);
+}
+
+.auth-container.sign-in::before {
+    transform: translate(0, 0);
+    right: 50%;
+}
+
+.auth-container.sign-up::before {
+    transform: translate(100%, 0);
+    right: 50%;
+}
+
+/* RESPONSIVE */
+.hidden-on-desktop {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .hidden-on-desktop {
+        display: block;
+    }
+
+    .auth-container::before,
+    .auth-container.sign-in::before,
+    .auth-container.sign-up::before {
+        height: 100vh;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 0;
+        z-index: 0;
+        transform: none;
+        right: 0;
+        background-image: linear-gradient(135deg, var(--auth-primary) 0%, var(--auth-secondary) 100%);
+    }
+
+    .auth-container.sign-in .col.sign-in,
+    .auth-container.sign-up .col.sign-up {
+        transform: translateY(0);
+        z-index: 10;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .auth-container .col.sign-up,
+    .auth-container .col.sign-in {
+        transform: translateY(100%);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .auth-container.sign-in .col.sign-up {
+        transform: translateY(100%);
+    }
+
+    .auth-container .content-row {
+        display: none !important;
+    }
+
+    .auth-container .col {
+        width: 100%;
+        position: absolute;
+        padding: 2rem;
+        background-color: transparent;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        transition: 0.6s ease-in-out;
+    }
+
+    .auth-container .row {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .auth-container .form {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        padding: 2rem 1.5rem;
+    }
+}
